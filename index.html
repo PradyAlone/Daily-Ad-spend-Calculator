@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Google Ads Budget Calculator</title>
+  <meta name="description" content="Calculate daily Google Ads spend from a total budget and selected number of days.">
+  <style>
+    :root{color-scheme:light dark;--bg:#f5f7fb;--bg2:#eef3ff;--text:#11131a;--muted:#687181;--line:rgba(20,25,36,.13);--glass:rgba(255,255,255,.65);--glassStrong:rgba(255,255,255,.84);--accent:#007aff;--accent2:#5856d6;--green:#34c759;--orange:#ff9500;--red:#ff3b30;--shadow:0 24px 80px rgba(41,51,80,.16);--softShadow:0 16px 50px rgba(41,51,80,.11);--blur:blur(24px) saturate(180%);--font:ui-sans-serif,-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+    @media (prefers-color-scheme:dark){:root{--bg:#08090d;--bg2:#121827;--text:#f6f7fb;--muted:#a8afbd;--line:rgba(255,255,255,.12);--glass:rgba(22,26,35,.62);--glassStrong:rgba(28,32,42,.84);--shadow:0 24px 80px rgba(0,0,0,.38);--softShadow:0 16px 50px rgba(0,0,0,.28)}}
+    *{box-sizing:border-box}body{margin:0;min-height:100vh;color:var(--text);font-family:var(--font);background:radial-gradient(circle at 12% 10%,rgba(0,122,255,.28),transparent 28%),radial-gradient(circle at 86% 8%,rgba(175,82,222,.24),transparent 26%),radial-gradient(circle at 65% 80%,rgba(52,199,89,.16),transparent 30%),linear-gradient(135deg,var(--bg),var(--bg2));overflow-x:hidden}body:before{content:"";position:fixed;inset:0;pointer-events:none;background-image:linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:42px 42px;mask-image:radial-gradient(circle at center,black,transparent 74%)}
+    .shell{width:min(1180px,calc(100% - 32px));margin:0 auto;padding:28px 0 58px}.nav{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:42px}.brand,.pill,.hero-card,.panel,.preview-card,.modal-card{border:1px solid var(--line);background:var(--glass);backdrop-filter:var(--blur);box-shadow:var(--softShadow)}.brand{display:inline-flex;align-items:center;gap:12px;padding:10px 14px;border-radius:999px;font-weight:800;letter-spacing:-.02em}.brand-mark{width:30px;height:30px;border-radius:11px;display:grid;place-items:center;color:#fff;background:linear-gradient(135deg,var(--accent),var(--accent2));box-shadow:0 10px 30px rgba(0,122,255,.32)}.pill{border-radius:999px;padding:9px 13px;color:var(--muted);font-size:13px;white-space:nowrap}.nav-actions{display:flex;align-items:center;gap:10px}.nav-button{display:inline-flex;align-items:center;justify-content:center;min-height:40px;padding:10px 14px;border-radius:999px;border:1px solid var(--line);background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;text-decoration:none;font-size:13px;font-weight:900;box-shadow:0 12px 28px rgba(0,122,255,.24);transition:transform .16s ease,box-shadow .16s ease}.nav-button:hover{transform:translateY(-1px);box-shadow:0 16px 34px rgba(0,122,255,.32)}.hero{display:block;margin-bottom:24px}.hero-card,.preview-card,.panel,.modal-card{border-radius:30px;box-shadow:var(--shadow)}.hero-card{padding:clamp(28px,5vw,54px);position:relative;overflow:hidden}.eyebrow{display:inline-flex;align-items:center;gap:8px;color:var(--accent);font-weight:900;font-size:13px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:16px}.dot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 0 6px rgba(52,199,89,.13)}h1{margin:0;max-width:760px;font-size:clamp(40px,6vw,76px);line-height:.92;letter-spacing:-.07em}.subhead{max-width:690px;margin:22px 0 0;color:var(--muted);font-size:clamp(16px,2vw,19px);line-height:1.55}.composer{margin-top:30px;display:grid;gap:14px;position:relative;z-index:1}.input-shell{display:grid;gap:14px;padding:10px;border:1px solid var(--line);border-radius:28px;background:var(--glassStrong);box-shadow:inset 0 1px 0 rgba(255,255,255,.18)}input,select,button{font:inherit}.field-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:12px}.field{display:grid;gap:8px}.field label{font-size:13px;font-weight:900;color:var(--muted);padding:0 6px}.budget-input,.day-select{width:100%;min-height:58px;border:0;outline:none;color:var(--text);background:rgba(127,127,127,.08);border:1px solid var(--line);border-radius:20px;padding:0 16px;font-size:18px;line-height:1.3}.budget-input{font-weight:900;letter-spacing:-.02em}.day-select{cursor:pointer;font-weight:800}.input-actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:space-between}.hint{color:var(--muted);font-size:13px;line-height:1.4;padding:0 6px}.btn{border:0;cursor:pointer;color:#fff;background:linear-gradient(135deg,var(--accent),var(--accent2));border-radius:18px;padding:14px 18px;min-height:48px;font-weight:900;letter-spacing:-.01em;box-shadow:0 14px 34px rgba(0,122,255,.26);transition:transform .16s ease,box-shadow .16s ease,opacity .16s ease;white-space:nowrap}.btn:hover{transform:translateY(-1px);box-shadow:0 18px 42px rgba(0,122,255,.34)}.btn:active{transform:translateY(1px) scale(.99)}.btn:disabled{opacity:.55;cursor:not-allowed;transform:none}.btn.ghost,.btn.secondary{color:var(--text);background:rgba(127,127,127,.09);border:1px solid var(--line);box-shadow:none}.status{display:none;align-items:flex-start;gap:10px;padding:13px 14px;border-radius:18px;border:1px solid var(--line);background:rgba(127,127,127,.08);color:var(--muted);font-size:14px;line-height:1.4}.status.show{display:flex}.status.good{color:var(--green);background:rgba(52,199,89,.08);border-color:rgba(52,199,89,.22)}.status.warn{color:var(--orange);background:rgba(255,149,0,.09);border-color:rgba(255,149,0,.24)}.status.error{color:var(--red);background:rgba(255,59,48,.08);border-color:rgba(255,59,48,.22)}.mini-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:20px}.mini-card{padding:16px;border-radius:22px;background:rgba(255,255,255,.42);border:1px solid var(--line)}@media (prefers-color-scheme:dark){.mini-card{background:rgba(255,255,255,.06)}}.mini-card strong{display:block;font-size:28px;letter-spacing:-.05em;line-height:1;margin-bottom:7px}.mini-card span{color:var(--muted);font-size:13px;line-height:1.3}.preview-card{padding:24px;display:flex;flex-direction:column;gap:16px;min-height:100%}.glass-window{flex:1;border:1px solid var(--line);background:var(--glassStrong);border-radius:26px;overflow:hidden;box-shadow:inset 0 1px 0 rgba(255,255,255,.18)}.window-top{display:flex;align-items:center;gap:7px;padding:14px;border-bottom:1px solid var(--line)}.light{width:11px;height:11px;border-radius:50%;background:#ff5f57}.light:nth-child(2){background:#ffbd2e}.light:nth-child(3){background:#28c840}.ad-mock{padding:22px}.mock-label{color:var(--muted);font-size:12px;margin-bottom:8px}.mock-title{font-size:22px;font-weight:900;letter-spacing:-.03em;color:#1a0dab;margin-bottom:8px}@media (prefers-color-scheme:dark){.mock-title{color:#8ab4f8}}.mock-desc{color:var(--muted);font-size:14px;line-height:1.45;margin-bottom:16px}.mock-links{display:grid;grid-template-columns:1fr;gap:10px}.mock-link{padding:15px;border-radius:18px;border:1px solid var(--line);background:rgba(127,127,127,.08)}.mock-link-top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:7px}.mock-link b{display:block;color:#1a0dab;font-size:15px;line-height:1.2}@media (prefers-color-scheme:dark){.mock-link b{color:#8ab4f8}}.mock-type{flex:0 0 auto;border-radius:999px;border:1px solid var(--line);color:var(--muted);background:rgba(127,127,127,.08);padding:4px 8px;font-size:10px;font-weight:900;text-transform:uppercase;letter-spacing:.05em}.mock-link span:not(.mock-type){display:block;color:var(--muted);font-size:13px;line-height:1.35}.mock-link span:not(.mock-type)+span{margin-top:4px}.toolbar{display:flex;flex-wrap:wrap;gap:10px;justify-content:stretch}.toolbar .btn{flex:1 1 120px;min-height:42px;padding:10px 13px;border-radius:14px}.notice-list{display:grid;gap:10px;margin:0;padding:0;list-style:none;color:var(--muted);font-size:14px;line-height:1.45}.notice-list li{display:grid;grid-template-columns:22px 1fr;gap:8px;align-items:start}.panel{padding:22px;margin-bottom:20px}.panel-head{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:18px}.panel-title{margin:0;font-size:22px;letter-spacing:-.04em}.panel-subtitle{margin:6px 0 0;color:var(--muted);font-size:14px;line-height:1.45}.result-output{padding:20px;border:1px solid var(--line);border-radius:20px;background:rgba(127,127,127,.08);line-height:1.5}.result-output span{color:var(--muted)}.result-line{display:flex;flex-wrap:wrap;align-items:baseline;gap:10px}.result-label{font-weight:900;color:var(--text)}.result-value{font-size:clamp(34px,5vw,58px);font-weight:950;letter-spacing:-.06em;color:var(--text);line-height:1}.result-note{margin-top:10px;color:var(--muted);font-size:14px}.toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%) translateY(20px);opacity:0;pointer-events:none;border:1px solid var(--line);background:var(--glassStrong);backdrop-filter:var(--blur);border-radius:999px;padding:12px 16px;box-shadow:var(--shadow);font-weight:900;z-index:30;transition:opacity .2s ease,transform .2s ease}.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}@media (max-width:900px){.hero{grid-template-columns:1fr}.mini-grid{grid-template-columns:1fr}}@media (max-width:640px){.shell{width:min(100% - 20px,1180px);padding-top:14px}.nav{align-items:flex-start;margin-bottom:18px}.pill{display:none}.nav-actions{margin-left:auto}.hero-card,.preview-card,.panel{border-radius:24px;padding:18px}.field-grid{grid-template-columns:1fr}.input-actions{display:grid}.btn{width:100%}h1{font-size:44px}}
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <nav class="nav" aria-label="Top navigation">
+      <div class="brand"><div class="brand-mark" aria-hidden="true">$</div><span>Ads Budget Calculator</span></div>
+      <div class="nav-actions"><div class="pill">Enter budget · choose days · get daily spend</div></div>
+    </nav>
+    <section class="hero" aria-labelledby="pageTitle">
+      <div class="hero-card">
+        <div class="eyebrow"><span class="dot"></span> Google Ads utility</div>
+        <h1 id="pageTitle">Daily spend calculator.</h1>
+        <p class="subhead">Enter the total ad budget, select the number of days, and the tool will calculate the exact daily budget using your day-based divisor.</p>
+        <div class="composer">
+          <div class="input-shell">
+            <div class="field-grid">
+              <div class="field">
+                <label for="budgetInput">Total budget</label>
+                <input id="budgetInput" class="budget-input" type="text" inputmode="decimal" placeholder="Example: 500" autocomplete="off">
+              </div>
+              <div class="field">
+                <label for="daysSelect">Number of days</label>
+                <select id="daysSelect" class="day-select">
+                  <option value="3">3 Days</option>
+                  <option value="4">4 Days</option>
+                  <option value="5">5 Days</option>
+                  <option value="6">6 Days</option>
+                  <option value="7" selected>7 Days</option>
+                </select>
+              </div>
+            </div>
+            <div class="input-actions">
+              <div class="hint">Daily spend = total budget divided by the selected day divisor.</div>
+              <button id="calculateBtn" class="btn">Calculate daily spend</button>
+            </div>
+          </div>
+          <div id="status" class="status" role="status" aria-live="polite"></div>
+        </div>
+        
+      </div>
+    </section>
+    <section class="panel" aria-labelledby="resultTitle">
+      <div class="panel-head">
+        <div>
+          <h2 class="panel-title" id="resultTitle">Calculated budget</h2>
+          <p class="panel-subtitle">Result updates when you click calculate, press Enter, or change the selected days.</p>
+        </div>
+      </div>
+      <div class="result-output" id="resultOutput">
+        <div class="result-line"><span class="result-label">Daily spend =</span> <span class="result-value">$0.00</span></div>
+        <div class="result-note">Enter a total budget and select the number of days.</div>
+      </div>
+    </section>
+  </main>
+  <div class="toast" id="toast" role="status" aria-live="polite">Copied</div>
+  <script>
+    var divisors = {
+      "3": 14.4,
+      "4": 18.4,
+      "5": 22.4,
+      "6": 26.4,
+      "7": 30.4
+    };
+
+    var state = {
+      budget: 0,
+      days: "7",
+      divisor: 30.4,
+      dailySpend: 0,
+      hasResult: false
+    };
+
+    function byId(id){return document.getElementById(id)}
+    function clean(value){return String(value||"").trim()}
+    function html(value){return String(value||"").replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll(String.fromCharCode(34),"&quot;").replaceAll("'","&#039;")}
+    function parseBudget(value){
+      var cleaned = String(value||"").replace(/[$,\s]/g,"");
+      var amount = Number(cleaned);
+      return Number.isFinite(amount) ? amount : NaN;
+    }
+    function money(value){
+      return new Intl.NumberFormat("en-US",{style:"currency",currency:"USD",minimumFractionDigits:2,maximumFractionDigits:2}).format(value||0);
+    }
+    function exactNumber(value){
+      if(!Number.isFinite(value)){return "0"}
+      return String(Math.round(value * 1000000) / 1000000);
+    }
+    function setStatus(message,type){
+      var el=byId("status");
+      if(!el){return}
+      var cls=type==="good"?"good":type==="warn"?"warn":type==="error"?"error":"";
+      var mark="<span aria-hidden='true'>"+(type==="good"?"✓":type==="warn"?"!":type==="error"?"⚠":"•")+"</span>";
+      el.className="status show "+cls;
+      el.innerHTML=mark+"<span>"+html(message)+"</span>";
+    }
+    function toast(message){
+      var el=byId("toast");
+      if(!el){return}
+      el.textContent=message;
+      el.classList.add("show");
+      setTimeout(function(){el.classList.remove("show")},1700);
+    }
+    function resultText(){
+      if(!state.hasResult){return "Daily spend = $0.00"}
+      return "Daily spend = "+money(state.dailySpend)+" | Budget "+money(state.budget)+" / "+state.divisor+" | "+state.days+" Days";
+    }
+    function formulaText(){
+      if(!state.hasResult){return "Daily spend = Budget / Divisor"}
+      return "Daily spend = "+money(state.budget)+" / "+state.divisor+" = "+money(state.dailySpend)+" ("+exactNumber(state.dailySpend)+")";
+    }
+    function render(){
+      var preview=byId("previewResult");
+      var result=byId("resultOutput");
+      var days=state.days;
+      var divisor=state.divisor;
+      var daily=state.hasResult ? money(state.dailySpend) : "$0.00";
+      var exact=state.hasResult ? exactNumber(state.dailySpend) : "0";
+      if(preview){
+        preview.innerHTML="<div class='mock-link'><div class='mock-link-top'><b>Daily spend = "+html(daily)+"</b><span class='mock-type'>"+html(days)+" Days</span></div><span>Formula: Budget / "+html(divisor)+"</span><span>Exact value: "+html(exact)+"</span></div>";
+      }
+      if(result){
+        if(state.hasResult){
+          result.innerHTML="<div class='result-line'><span class='result-label'>Daily spend =</span> <span class='result-value'>"+html(daily)+"</span></div><div class='result-note'>"+html(money(state.budget))+" / "+html(divisor)+" = "+html(exact)+". Rounded currency display: "+html(daily)+".</div>";
+        }else{
+          result.innerHTML="<div class='result-line'><span class='result-label'>Daily spend =</span> <span class='result-value'>$0.00</span></div><div class='result-note'>Enter a total budget and select the number of days.</div>";
+        }
+      }
+    }
+    function calculate(showMessage){
+      var budget=parseBudget(byId("budgetInput").value);
+      var days=byId("daysSelect").value;
+      var divisor=divisors[days];
+      if(!Number.isFinite(budget) || budget<=0){
+        state.hasResult=false;
+        state.days=days;
+        state.divisor=divisor;
+        state.dailySpend=0;
+        render();
+        setStatus("Enter a valid budget greater than 0.","error");
+        return;
+      }
+      state.budget=budget;
+      state.days=days;
+      state.divisor=divisor;
+      state.dailySpend=budget/divisor;
+      state.hasResult=true;
+      render();
+      if(showMessage!==false){setStatus("Calculated daily spend for "+days+" days using Budget / "+divisor+".","good")}
+    }
+    async function copyText(text,message){
+      if(!clean(text)){toast("Nothing to copy yet");return}
+      try{await navigator.clipboard.writeText(text)}catch(error){var t=document.createElement("textarea");t.value=text;document.body.appendChild(t);t.select();document.execCommand("copy");t.remove()}
+      toast(message);
+    }
+    function clearAll(){
+      byId("budgetInput").value="";
+      byId("daysSelect").value="7";
+      state={budget:0,days:"7",divisor:30.4,dailySpend:0,hasResult:false};
+      render();
+      var status=byId("status");
+      if(status){status.classList.remove("show")}
+      toast("Cleared");
+    }
+
+    byId("calculateBtn").addEventListener("click",function(){calculate(true)});
+    byId("budgetInput").addEventListener("keydown",function(event){if(event.key==="Enter"){calculate(true)}});
+    byId("daysSelect").addEventListener("change",function(){if(clean(byId("budgetInput").value)){calculate(true)}else{state.days=this.value;state.divisor=divisors[this.value];render()}});
+    render();
+  </script>
+</body>
+</html>
