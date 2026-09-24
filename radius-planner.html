@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Google Ads Radius Planner | Prady</title>
+<meta name="description" content="A practical local Google Search radius starting point for small Maximize Conversions budgets.">
+<style>
+:root{color-scheme:light dark;--bg:#f5f7fb;--bg2:#eef3ff;--text:#11131a;--muted:#687181;--line:rgba(20,25,36,.13);--glass:rgba(255,255,255,.65);--glassStrong:rgba(255,255,255,.84);--accent:#007aff;--accent2:#5856d6;--green:#34c759;--orange:#ff9500;--red:#ff3b30;--shadow:0 24px 80px rgba(41,51,80,.16);--blur:blur(24px) saturate(180%);--font:ui-sans-serif,-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Segoe UI",Roboto,Arial,sans-serif}
+@media(prefers-color-scheme:dark){:root{--bg:#08090d;--bg2:#121827;--text:#f6f7fb;--muted:#a8afbd;--line:rgba(255,255,255,.12);--glass:rgba(22,26,35,.62);--glassStrong:rgba(28,32,42,.84);--shadow:0 24px 80px rgba(0,0,0,.38)}}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;color:var(--text);font-family:var(--font);background:radial-gradient(circle at 12% 10%,rgba(0,122,255,.28),transparent 28%),radial-gradient(circle at 86% 8%,rgba(175,82,222,.24),transparent 26%),radial-gradient(circle at 65% 80%,rgba(52,199,89,.16),transparent 30%),linear-gradient(135deg,var(--bg),var(--bg2))}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;background-image:linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:42px 42px;mask-image:radial-gradient(circle at center,black,transparent 74%)}
+.shell{width:min(1080px,calc(100% - 32px));margin:auto;padding:28px 0 48px;position:relative}.nav{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:32px;flex-wrap:wrap}
+.brand,.pill,.hero,.panel{border:1px solid var(--line);background:var(--glass);backdrop-filter:var(--blur);box-shadow:var(--shadow)}.brand{display:flex;align-items:center;gap:10px;border-radius:999px;padding:9px 14px;font-weight:850;letter-spacing:-.02em}.mark{display:grid;place-items:center;width:31px;height:31px;border-radius:11px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:white}.pill{border-radius:999px;padding:10px 14px;color:var(--muted);font-size:13px;text-decoration:none}.pill:hover{color:var(--accent)}.hero,.panel{border-radius:30px;padding:clamp(22px,4vw,46px);margin-bottom:19px}.eyebrow{color:var(--accent);font-size:12px;letter-spacing:.08em;font-weight:900;text-transform:uppercase}.dot{display:inline-block;width:7px;height:7px;margin-right:7px;border-radius:50%;background:var(--green);box-shadow:0 0 0 5px rgba(52,199,89,.13)}h1{font-size:clamp(39px,6vw,68px);line-height:.98;letter-spacing:-.065em;margin:17px 0 14px}p{line-height:1.55;color:var(--muted)}.intro{max-width:700px;font-size:17px;margin:0 0 26px}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}.field{min-width:0}.field label{display:block;font-size:13px;font-weight:850;color:var(--muted);margin:0 0 8px 5px}.field input,.field select{appearance:auto;width:100%;height:56px;padding:0 15px;border:1px solid var(--line);border-radius:17px;background:var(--glassStrong);color:var(--text);font:700 16px var(--font);outline:none}.field input:focus,.field select:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(0,122,255,.13)}.field input::placeholder{color:var(--muted);font-weight:450}.wide{grid-column:1/-1}.micro{font-size:12px;color:var(--muted);margin:7px 5px 0;line-height:1.5}button{font:inherit;cursor:pointer}.actions{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:20px}.btn{border:0;border-radius:17px;padding:15px 22px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:white;font-weight:900;box-shadow:0 14px 34px rgba(0,122,255,.24)}.btn:hover{filter:brightness(1.07)}.quiet{background:transparent;color:var(--muted);border:1px solid var(--line);box-shadow:none}.result-head{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}.chip{font-size:12px;font-weight:850;color:var(--accent);background:rgba(0,122,255,.1);border:1px solid rgba(0,122,255,.2);border-radius:999px;padding:7px 11px}.range{font-size:clamp(48px,8vw,91px);font-weight:950;letter-spacing:-.075em;line-height:1.12;margin:12px 0 4px}.unit{font-size:clamp(20px,3vw,29px);font-weight:750;letter-spacing:-.04em;color:var(--muted)}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:22px}.stat{border:1px solid var(--line);border-radius:19px;padding:17px;background:var(--glassStrong)}.stat b{display:block;font-size:20px;letter-spacing:-.04em}.stat span{display:block;color:var(--muted);font-size:12px;margin-top:6px;line-height:1.4}.note{font-size:14px;border:1px solid var(--line);border-radius:18px;padding:15px;background:rgba(127,127,127,.07);margin-top:16px;line-height:1.5}.note.warn{border-color:rgba(255,149,0,.4);background:rgba(255,149,0,.08)}.note p{margin:0}.note p+p{margin-top:9px}.footer{color:var(--muted);font-size:12px;text-align:center;padding:14px 0 6px}.footer strong{color:var(--text)}.hidden{display:none!important}@media(max-width:650px){.shell{width:calc(100% - 20px);padding-top:14px}.hero,.panel{border-radius:24px}.grid{grid-template-columns:1fr}.wide{grid-column:auto}.stats{grid-template-columns:1fr}.btn{width:100%}.actions{display:grid}.nav{margin-bottom:18px}h1{font-size:43px}}
+</style>
+</head>
+<body><main class="shell">
+<nav class="nav"><div class="brand"><span class="mark">◎</span> Ads Radius Planner</div><a class="pill" href="./index.html">↗ Budget Calculator</a></nav>
+<section class="hero">
+<div class="eyebrow"><span class="dot"></span> Google Ads utility · Maximize Conversions</div>
+<h1>Find your starting radius.</h1>
+<p class="intro">A practical geography starting point for local Search campaigns with lean monthly budgets. Built around real account experience, not a promise of results.</p>
+<form id="planner" novalidate><div class="grid">
+<div class="field"><label for="budget">Monthly budget · USD</label><input id="budget" type="number" min="1" step="1" value="600" required></div>
+<div class="field"><label for="vertical">Service</label><select id="vertical"><option value="dentist">Dentist</option><option value="vet">Vet</option><option value="cpa">Accountant / CPA</option><option value="other">Other local service</option></select></div>
+<div class="field"><label for="town">Town / city</label><input id="town" placeholder="e.g. Hoboken"></div>
+<div class="field"><label for="state">State</label><input id="state" placeholder="e.g. New Jersey"></div>
+<div class="field wide"><label for="region">Exact service area / boundary (optional)</label><input id="region" placeholder="e.g. downtown and neighborhoods north of the river"></div>
+<div class="field"><label for="density">Market density</label><select id="density"><option value="unknown">Not sure / use baseline</option><option value="dense">Dense urban</option><option value="suburban">Suburban / mixed</option><option value="sparse">Sparse / rural</option></select></div>
+<div class="field"><label for="population">Population within 5 miles · optional</label><input id="population" type="number" min="0" step="1000" placeholder="e.g. 90000"><div class="micro">Enter a real estimate, not the entire city's population.</div></div>
+<div class="field"><label for="cpc">Estimated search CPC · optional</label><input id="cpc" type="number" min="0" step=".01" placeholder="e.g. 12"></div>
+<div class="field"><label for="is">Core keyword Search impr. share % · optional</label><input id="is" type="number" min="0" max="100" step=".1" placeholder="e.g. 35"><div class="micro">Use the matching keyword, campaign, and geography. Impression share is not search volume.</div></div>
+</div><div class="actions"><span class="micro">Budget + density + demand, not budget ÷ miles.</span><button class="btn" type="submit">Calculate starting radius →</button></div></form></section>
+<section class="panel" id="result" aria-live="polite">
+<div class="result-head"><span class="eyebrow">Starting recommendation</span><span class="chip" id="confidence">Baseline estimate</span></div>
+<div class="range" id="radius">5–6 <span class="unit">miles</span></div><p id="summary">Based on $600/month and a dentist campaign starting on Maximize Conversions.</p>
+<div class="stats"><div class="stat"><b id="anchor">6–7 mi</b><span>Proven $1,000/mo anchor</span></div><div class="stat"><b id="people">Not provided</b><span>Estimated population in recommended radius</span></div><div class="stat"><b id="daily">$19.74</b><span>Approx. daily spend · budget / 30.4</span></div></div>
+<div class="note" id="guidance">Keep enough search volume for Max Conversions, then tighten query quality before squeezing the radius.</div>
+<div class="note hidden" id="caveat"></div>
+<div class="actions"><button id="copy" class="btn quiet" type="button">Copy recommendation</button><span class="micro">Starting heuristic only. Validate with location forecasts, search terms and account performance.</span></div>
+</section><footer class="footer"><strong>Designed, Built and Made for Prady</strong></footer></main>
+<script>
+(function(){
+"use strict";
+const $=id=>document.getElementById(id);
+const fmt=new Intl.NumberFormat("en-US",{maximumFractionDigits:0});
+let last="";
+const roundHalf=n=>Math.round(n*2)/2;
+const show=n=>Number.isInteger(n)?String(n):n.toFixed(1);
+function compute(){
+ const budget=Number($("budget").value),vert=$("vertical").value,den=$("density").value;
+ const pop=$("population").value.trim()===""?null:Number($("population").value);
+ const cpc=$("cpc").value.trim()===""?null:Number($("cpc").value);
+ const share=$("is").value.trim()===""?null:Number($("is").value);
+ if(!Number.isFinite(budget)||budget<=0){$("budget").focus();return}
+ if(pop!==null&&(!Number.isFinite(pop)||pop<0))return;
+ if(cpc!==null&&(!Number.isFinite(cpc)||cpc<0))return;
+ if(share!==null&&(!Number.isFinite(share)||share<0||share>100))return;
+ // User's empirical anchor: $1,000/mo near 6–7mi, with a practical floor around 4–5mi.
+ const baseline=budget<=600?4.5:budget<=800?5.5:6.5;
+ let center=baseline;
+ const reasons=[];
+ if(vert==="vet"){center+=.5;reasons.push("Vets can often use slightly broader coverage.")}
+ if(vert==="cpa"){center+=.5;reasons.push("Accountant demand can be thin; avoid over-restricting the auctions.")}
+ if(vert==="dentist"){reasons.push("Dentist CPC and competition can make overly broad coverage expensive.")}
+ if(den==="dense"){center-=.5;reasons.push("Dense market: keep the starting area controlled.")}
+ if(den==="sparse"){center+=.5;reasons.push("Sparse market: protect available searches.")}
+ let populationNote="";
+ if(pop!==null&&pop>0){
+   // Extrapolation assumes uniform density, so always label as directional.
+   const estimatedAtCenter=pop*Math.pow(center/5,2);
+   const target=budget<=600?[15000,50000]:budget<=800?[30000,100000]:[50000,150000];
+   if(estimatedAtCenter>target[1]*1.5){center-=.5;populationNote="Population suggests unusually broad reach for this budget. "}
+   if(estimatedAtCenter<target[0]*.65){center+=.5;populationNote="Population suggests low reach; preserve auction coverage. "}
+ }
+ if(cpc!==null&&cpc>0){
+   const clicks=(budget/30.4)/cpc*30.4;
+   if(clicks<30){reasons.push("At the supplied CPC, budget allows fewer than roughly 30 clicks/month; keep keyword intent narrow.");}
+ }
+ center=roundHalf(Math.min(10,Math.max(4,center)));
+ const low=Math.max(4,center-.5),high=Math.max(low+.5,center+.5);
+ const range=show(low)+"–"+show(high);
+ const estimated=pop!==null&&pop>0?Math.round(pop*Math.pow(center/5,2)):null;
+ const town=[$("town").value.trim(),$("state").value.trim()].filter(Boolean).join(", ");
+ const area=$("region").value.trim();
+ const services={dentist:"dentist",vet:"vet",cpa:"accountant / CPA",other:"local service"};
+ const origin=town?(town+(area?" · "+area:"")):"the selected market";
+ const summary="For "+origin+", start "+services[vert]+" Search at "+range+" miles on a $"+fmt.format(budget)+"/month budget with Maximize Conversions.";
+ $("radius").innerHTML=range+' <span class="unit">miles</span>';
+ $("summary").textContent=summary;
+ $("daily").textContent="$"+(budget/30.4).toFixed(2);
+ $("people").textContent=estimated!==null?"~"+fmt.format(estimated):"Not provided";
+ $("confidence").textContent=pop!==null&&pop>0?"Population-adjusted heuristic":"Baseline heuristic";
+ $("guidance").textContent=populationNote+reasons.join(" ")+" Protect impressions through keyword intent, negatives, location exclusions and search-term cleanup. Check location performance before changing radius.";
+ const warnings=[];
+ if(estimated!==null)warnings.push("Population at the recommended radius is a geometric approximation from your 5-mile estimate, not a map or census measurement; terrain, water and neighborhood boundaries can change it.");
+ if(share!==null)warnings.push("Core keyword Search impression share: "+show(share)+"%. This measures eligible impressions won, not the number of searches. Check Search lost IS (budget), Search lost IS (rank), impressions and location forecasts before using it to expand or contract reach.");
+ if(budget<400||budget>1000)warnings.push("Budget is outside the $400–$1,000 range used to calibrate this framework. Treat this radius as exploratory.");
+ if(town||area)warnings.push("Town and service-area text label this recommendation; this offline tool does not geocode, inspect borders, pull live population, or retrieve Google Ads forecasts.");
+ const caveat=$("caveat");caveat.classList.toggle("hidden",warnings.length===0);caveat.classList.toggle("warn",warnings.length>0);caveat.textContent=warnings.join(" ");
+ last=summary+(estimated!==null?" Directional population: ~"+fmt.format(estimated)+".":"")+(share!==null?" Core keyword Search IS: "+show(share)+"%.":"")+" Validate against auction volume, CPC and conversions.";
+}
+$("planner").addEventListener("submit",e=>{e.preventDefault();compute();$("result").scrollIntoView({behavior:"smooth",block:"start"})});
+$("copy").addEventListener("click",async()=>{if(!last)compute();try{await navigator.clipboard.writeText(last);$("copy").textContent="Copied ✓"}catch(e){$("copy").textContent="Copy unavailable"}setTimeout(()=>$("copy").textContent="Copy recommendation",1800)});
+compute();
+})();
+</script></body></html>
